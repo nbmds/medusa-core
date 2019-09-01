@@ -5,7 +5,7 @@ export default [
     path: "/test",
     name: "TestPage",
     meta: {
-      title: "概览",
+      title: "测试页面",
       icon: "",
     },
     component: () => import("./TestPage.vue"),

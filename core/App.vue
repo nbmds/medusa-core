@@ -1,5 +1,7 @@
 <template>
-  <m-layout :layout="layout"
+  <m-layout :logo="logo"
+            :routes="routes"
+            :breadcrumb="breadcrumb"
             :user-info="userInfo">
     <i class="el-icon-bell"
        slot="header-right"></i>
@@ -14,28 +16,16 @@ import { Vue, Component } from "vue-property-decorator";
 export default class App extends Vue {
   // mock
   // layout
-  layout = {
-    logo: require("./assets/images/logo.png"),
+  logo = require("./assets/images/logo.png");
 
-    routes: [
-      {
-        path: "/app",
-        meta: {
-          title: "测试",
-        },
-        children: [
-          {
-            name: "Home",
-            path: "",
-            meta: {
-              title: "子测试",
-            },
-          },
-        ],
-      },
-    ],
-    breadcrumb: ["测试1", "测试2", "测试"],
-  };
+  get routes(): any[] {
+    // @ts-ignore
+    return this.$router.options.routes;
+  }
+
+  get breadcrumb() {
+    return this.$route.matched.map(route => route.meta.title);
+  }
 
   /** 用户数据 */
   userInfo = {

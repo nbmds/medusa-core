@@ -14,7 +14,12 @@ Vue.use(MedusaUI);
 
 Vue.config.productionTip = false;
 
-export const createInstance = ({ storeModule, routeModule }: IInstance) => {
+export const createInstance = ({
+  storeModule,
+  routeModule,
+  install,
+}: IInstance) => {
+  install(Vue);
   return new Vue({
     store: createStore(storeModule),
     router: createRouter(routeModule),

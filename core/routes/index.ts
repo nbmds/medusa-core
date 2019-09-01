@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import routes from "./routes";
+import baseRoutes from "./routes";
 import config from "../config";
 
 Vue.use(Router);
@@ -8,7 +8,7 @@ Vue.use(Router);
 export default routeModule => {
   const router = new Router({
     mode: "history",
-    routes: routes.concat(routeModule),
+    routes: baseRoutes.concat(routeModule),
   });
 
   router.beforeEach((to, from, next) => {

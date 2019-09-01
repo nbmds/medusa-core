@@ -3,7 +3,7 @@
     <el-header class="admin__header">
       <div class="admin__center admin__center--flex">
         <img class="admin__header--logo"
-             :src="layout.logo" />
+             :src="logo" />
         <div class="admin__header--user">
           <slot name="header-right"></slot>
           <img class="user--avatar"
@@ -33,8 +33,9 @@
             </el-dropdown-menu>
           </el-dropdown>
         </div>
-        <el-menu default-active="/">
-          <template v-for="(item,i) of layout.routes">
+        <el-menu :default-active="active"
+                 @select="onSelect">
+          <template v-for="(item,i) of routes">
             <template v-if="item.children">
               <el-submenu :key="i"
                           :index="i.toString()">
@@ -45,7 +46,7 @@
                 <el-menu-item-group>
                   <el-menu-item v-for="(sItem) of item.children"
                                 :key="sItem.path"
-                                :index="sItem.name">{{sItem.meta.title}}</el-menu-item>
+                                :index="item.path+sItem.name">{{sItem.meta.title}}</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
             </template>
@@ -62,7 +63,7 @@
       <el-main class="admin__main">
         <div class="admin__main--breadcrumb">
           <el-breadcrumb separator="/">
-            <el-breadcrumb-item v-for="item of layout.breadcrumb"
+            <el-breadcrumb-item v-for="item of breadcrumb"
                                 :key="item">{{item}}</el-breadcrumb-item>
           </el-breadcrumb>
         </div>
@@ -83,16 +84,22 @@ export default class MLayout extends Vue {
    * 布局数据
    */
   @Prop({
-    type: Object,
+    type: Array,
     default() {
-      return { routes: {}, logo: "", breadcrumb: [] };
+      return [];
     },
   })
-  layout: {
-    routes: any[];
-    breadcrumb: string[];
-    logo: string;
-  };
+  routes: any[];
+
+  @Prop({
+    type: Array,
+  })
+  breadcrumb: string[];
+
+  @Prop({
+    type: String,
+  })
+  logo: string;
 
   /**
    * 用户数据
@@ -108,16 +115,12 @@ export default class MLayout extends Vue {
     name: string;
   };
 
+  get active() {
+    return this.$route.fullPath;
+  }
+
   onSelect(item) {
-    this.$emit("on-select", item);
-  }
-
-  onOpen(item) {
-    this.$emit("on-open", item);
-  }
-
-  onClose(item) {
-    this.$emit("on-close", item);
+    this.$router.push(item);
   }
 }
 </script>
