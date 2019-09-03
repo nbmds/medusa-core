@@ -1,7 +1,6 @@
-// 导入颜色选择器组件
 import { VueConstructor } from "vue";
 import MLayout from "./layout";
-import "../assets/styles/_base.scss";
+import "./assets/styles/_base.scss";
 
 const components = [MLayout];
 

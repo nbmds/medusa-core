@@ -46,7 +46,7 @@
                 <el-menu-item-group>
                   <el-menu-item v-for="(sItem) of item.children"
                                 :key="sItem.path"
-                                :index="item.path+sItem.name">{{sItem.meta.title}}</el-menu-item>
+                                :index="item.path+sItem.path">{{sItem.meta.title}}</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
             </template>
@@ -126,5 +126,5 @@ export default class MLayout extends Vue {
 </script>
   
 <style lang="scss">
-@import "../../assets/styles/m-layout.scss";
+@import "../assets/styles/m-layout.scss";
 </style>

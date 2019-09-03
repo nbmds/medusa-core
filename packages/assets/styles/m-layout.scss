@@ -69,9 +69,9 @@
   }
 
   &__aside {
-    width: 180px;
     margin-right: 10px;
     background: #fff;
+    overflow-x: hidden!important;
 
     &--shop {
       @include flex;

@@ -9,7 +9,7 @@ import { RouteConfig } from "vue-router";
 export interface IInstance {
   storeModule: ModuleTree<any>;
   routeModule: RouteConfig[];
-  install(vue: VueConstructor): void;
+  install?(vue: VueConstructor): void;
 }
 
 /**

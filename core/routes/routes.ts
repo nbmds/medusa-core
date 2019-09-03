@@ -14,6 +14,15 @@ export default [
         },
         component: () => import("../views/Home.vue"),
       },
+      {
+        path: "test1",
+        name: "Test",
+        meta: {
+          title: "子",
+          icon: "",
+        },
+        component: () => import("../views/Home.vue"),
+      },
     ],
   },
 ] as RouteConfig[];
