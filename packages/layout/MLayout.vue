@@ -41,12 +41,12 @@
                           :index="i.toString()">
                 <template slot="title">
                   <i class="el-icon-location"></i>
-                  <span>{{item.meta.title}}</span>
+                  <span>{{ item.meta && item.meta.title}}</span>
                 </template>
                 <el-menu-item-group>
                   <el-menu-item v-for="(sItem) of item.children"
-                                :key="sItem.path"
-                                :index="item.path+sItem.path">{{sItem.meta.title}}</el-menu-item>
+                                :key="item.path+sItem.path"
+                                :index="item.path+sItem.path">{{ sItem.meta && sItem.meta.title}}</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
             </template>
@@ -54,7 +54,7 @@
               <el-menu-item :key="i"
                             :index="item.path">
                 <i class="el-icon-menu"></i>
-                <span slot="title">{{item.meta.title}}</span>
+                <span slot="title">{{item.meta && item.meta.title}}</span>
               </el-menu-item>
             </template>
           </template>
