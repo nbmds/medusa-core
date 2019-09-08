@@ -45,8 +45,8 @@
                 </template>
                 <el-menu-item-group>
                   <el-menu-item v-for="(sItem) of item.children"
-                                :key="item.path+sItem.path"
-                                :index="item.path+sItem.path">{{ sItem.meta && sItem.meta.title}}</el-menu-item>
+                                :key="item.path+'/'+sItem.path"
+                                :index="item.path+'/'+sItem.path">{{ sItem.meta && sItem.meta.title}}</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
             </template>
